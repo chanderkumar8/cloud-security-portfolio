@@ -1,0 +1,16 @@
+name: Cloud Security Scan
+
+on: [push]
+
+jobs:
+  scan-infrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Code From Repository
+        uses: actions/checkout@v4
+
+      - name: Run Checkov Security Scanner
+        uses: bridgecrewio/checkov-action@master
+        with:
+          file: main.tf
+          framework: terraform
